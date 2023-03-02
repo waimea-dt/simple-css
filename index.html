@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple CSS Test</title>
+    <link rel="stylesheet" href="simple.css">
+</head>
+
+<body>
+
+    <header>
+        <h1>Simple CSS Test</h1>
+
+        <nav>
+            <label for="toggle">Open</label>
+            <input id="toggle" type="checkbox">
+
+            <ul>
+                <label for="toggle">Close</label>
+
+                <li><a href="#top">Top</a></li>
+                <li><a href="#text">Text</a></li>
+                <li><a href="#lists">Lists</a></li>
+                <li><a href="#links">Links</a></li>
+                <li><a href="#media">Media</a></li>
+                <li><a href="#tables">Tables</a></li>
+                <li><a href="#forms">Forms</a></li>
+                <li><a href="#columns">Columns</a></li>
+                <li><a href="#cards">Cards</a></li>
+                <li><a href="#code">Code</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+
+        <section class="hero">
+            <h1>Simple CSS Test</h1>
+
+            <p>What a delightful thing this is</p>
+        </section>
+
+        <section id="text">
+            <header>
+                <h2>Text</h2>
+            </header>
+
+            <h1>Heading 1</h1>
+            <h2>Heading 2</h2>
+            <h3>Heading 3</h3>
+            <h4>Heading 4</h4>
+            <h5>Heading 5</h5>
+            <h6>Heading 6</h6>
+
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc sapien leo, vehicula at vestibulum sed, feugiat vitae enim. Aliquam nec est ac elit gravida egestas. Quisque in tellus sodales felis vulputate hendrerit vitae quis velit. Etiam purus leo, accumsan vel condimentum vitae, consectetur in turpis. Fusce malesuada est vel leo rutrum ullamcorper.</p>
+            <p>Etiam eget justo vel lectus vulputate suscipit. Maecenas et pulvinar nulla. Morbi eu mi metus, sit amet imperdiet tellus. Nullam eget dui non sem dictum vestibulum a eu risus. Pellentesque dolor est, venenatis ac tristique tincidunt, fringilla pulvinar enim. Ut rutrum interdum lorem, non porttitor tellus volutpat vel. Curabitur vulputate magna a massa sodales quis cursus magna lacinia. Nunc ac vestibulum libero.</p>
+
+            <blockquote>What a great idea!</blockquote>
+
+            <p>This is <strong>really important</strong>, and I want to really <em>stress this</em></p>
+
+            <p>E=mc<sup>2</sup> is pretty cool, and so is H<sub>2</sub>O</p>
+
+            <p class="accent">Accent: I'm pretty!</p>
+            <p class="success">Success: Horray it worked!</p>
+            <p class="warning">Warning: Be careful!</p>
+            <p class="error">Error: It's all gone very wrong!</p>
+        </section>
+
+        <section id="lists">
+            <header>
+                <h2>Lists</h2>
+            </header>
+
+            <p>Here are some lists</p>
+
+            <ul>
+                <li>One</li>
+                <li>Two</li>
+                <li>Three</li>
+            </ul>
+
+            <ol>
+                <li>One</li>
+                <li>Two</li>
+                <li>Three</li>
+            </ol>
+
+            <p>Oh, here is another</p>
+
+            <ol>
+                <li>One</li>
+                <li>Two
+                    <ul>
+                        <li>Two One</li>
+                        <li>Two Two</li>
+                    </ul>
+                </li>
+                <li>Three</li>
+            </ol>
+
+            <p>Nice lists!</p>
+        </section>
+
+        <section id="links">
+            <header>
+                <h2>Links and Buttons</h2>
+            </header>
+
+            <p>This is an <a href="#">inline link</a> here</p>
+
+            <p>These are links styled as buttons</p>
+
+            <a href="#" class="button">Button Link</a>
+            <a href="#" class="button success">Success Link</a>
+            <a href="#" class="button warning">Warning Link</a>
+            <a href="#" class="button error">Error Link</a>
+            <a href="#" class="button accent">Accent Link</a>
+            <a href="#" class="button disabled">Disabled Link</a>
+
+            <p>These are actual buttons</p>
+
+            <button>Button</button>
+            <button class="success">Success Button</button>
+            <button class="warning">Warning Button</button>
+            <button class="error">Error Button</button>
+            <button class="accent">Accent Button</button>
+            <button class="disabled">Disabled via Class Button</button>
+            <button disabled>Disabled Button</button>
+        </section>
+
+        <section id="media">
+            <header>
+                <h2>Media</h2>
+            </header>
+
+            <p>Here is a small image</p>
+
+            <img src="https://picsum.photos/200/300" loading="lazy">
+
+            <p>Here is a really wide image</p>
+
+            <img src="https://picsum.photos/1600/300" loading="lazy">
+
+            <p>Here is an image with a caption</p>
+
+            <figure>
+                <img src="https://picsum.photos/1200/300" loading="lazy">
+                <figcaption>What a view!</figcaption>
+            </figure>
+
+        </section>
+
+        <section id="tables">
+            <header>
+                <h2>Tables</h2>
+            </header>
+
+            <p>Here is a table</p>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>A</th>
+                        <th>B</th>
+                        <th>C</th>
+                        <th>D</th>
+                        <th>E</th>
+                        <th>F</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>One</td>
+                        <td>Two</td>
+                        <td>Three</td>
+                        <td>Four</td>
+                        <td>Five</td>
+                        <td>This is a much longer entry</td>
+                    </tr>
+                    <tr>
+                        <td>Six</td>
+                        <td>Seven</td>
+                        <td>Eight</td>
+                        <td>Nine</td>
+                        <td>Ten</td>
+                        <td>And so is this</td>
+                    </tr>
+                    <tr>
+                        <td>One</td>
+                        <td>Two</td>
+                        <td>Three</td>
+                        <td>Four</td>
+                        <td>Five</td>
+                        <td>This is a much longer entry</td>
+                    </tr>
+                    <tr>
+                        <td>Six</td>
+                        <td>Seven</td>
+                        <td>Eight</td>
+                        <td>Nine</td>
+                        <td>Ten</td>
+                        <td>And so is this</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <p>It is very nice</p>
+        </section>
+
+        <section id="forms">
+            <header>
+                <h2>Forms - Simple</h2>
+            </header>
+
+            <p>Here is a simple form</p>
+
+            <form>
+                <input type="text">
+                <input type="submit">
+            </form>
+
+            <p>This form has a header</p>
+
+            <form>
+                <header>
+                    <h3>Login</h3>
+                </header>
+
+                <label>Username</label>
+                <input type="text" required>
+
+                <label>Password</label>
+                <input type="password" required>
+
+                <input type="submit">
+            </form>
+
+            <p>Labels around inputs</p>
+
+            <form>
+                <header>
+                    <h3>Login</h3>
+                </header>
+
+                <label>
+                    Username
+                    <input type="text" required>
+                </label>
+
+                <label>
+                    Password
+                    <input type="password" required>
+                </label>
+
+                <label>
+                    <input type="checkbox">
+                    Happy?
+                </label>
+                <label>
+                    <input type="checkbox">
+                    Cheesy?
+                </label>
+                <label>
+                    <input type="checkbox">
+                    Wholesome?
+                </label>
+
+                <input type="submit">
+            </form>
+        </section>
+
+        <section id="forms2">
+            <header>
+                <h2>Forms - Complex</h2>
+            </header>
+
+            <p>Here are all the form controls</p>
+
+            <form>
+                <header>
+                    <h3>All Controls</h3>
+                </header>
+
+                <label>Username</label>
+                <input type="text" required>
+
+                <label>Password</label>
+                <input type="password" required>
+
+                <label>Shoe size</label>
+                <input type="number" min="1" max="15" required>
+
+                <label>Date of birth</label>
+                <input type="date" required>
+
+                <label>Favourite colour</label>
+                <input type="color" required>
+
+                <label>Search</label>
+                <input type="search" required>
+
+                <label>Avatar</label>
+                <input type="file" required>
+
+                <label>Rating</label>
+                <input type="range">
+
+                <label>Favourite?</label>
+                <select>
+                    <option>One</option>
+                    <option>Two</option>
+                    <option>Three</option>
+                </select>
+
+                <label>Thoughts...</label>
+                <textarea required>Write things here</textarea>
+
+                <label>Disabled</label>
+                <input type="text" disabled>
+
+                <input type="checkbox">
+                <label>Do you like it?</label>
+
+                <label>Label above check boxes</label>
+                <input type="checkbox">
+                <label>Accept?</label>
+                <input type="checkbox">
+                <label>Like it?</label>
+
+                <fieldset>
+                    <legend>Fieldset legend</legend>
+                    <input type="checkbox">
+                    <label>Cheese</label>
+                    <input type="checkbox">
+                    <label>Bacon</label>
+                    <input type="checkbox">
+                    <label>Toast</label>
+                </fieldset>
+
+                <label>Label above fieldset</label>
+                <fieldset>
+                    <input type="radio">
+                    <label>Yes</label>
+                    <input type="radio">
+                    <label>No</label>
+                </fieldset>
+
+                <fieldset>
+                    <legend>Fieldset with labels around controls</legend>
+                    <label>
+                        <input type="checkbox">
+                        Happy?
+                    </label>
+                    <label>
+                        <input type="checkbox">
+                        Cheesy?
+                    </label>
+                    <label>
+                        <input type="checkbox">
+                        Wholesome?
+                    </label>
+                </fieldset>
+
+                <input type="submit">
+            </form>
+
+        </section>
+
+        <section id="columns" class="columns">
+            <header>
+                <h2>Sub-Sections - Columns</h2>
+            </header>
+
+            <div>
+                <h3>This is a Child Div</h3>
+
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc sapien leo, vehicula at vestibulum sed, feugiat vitae enim. Aliquam nec est ac elit gravida egestas. Quisque in tellus sodales felis vulputate hendrerit vitae quis velit.</p>
+            </div>
+
+            <div>
+                <h3>This is a Child Div</h3>
+
+                <p>Etiam purus leo, accumsan vel condimentum vitae, consectetur in turpis. Fusce malesuada est vel leo rutrum ullamcorper. Etiam eget justo vel lectus vulputate suscipit. Maecenas et pulvinar nulla.</p>
+                <p>Morbi eu mi metus, sit amet imperdiet tellus. Nullam eget dui non sem dictum vestibulum a eu risus. Pellentesque dolor est, venenatis ac tristique tincidunt, fringilla pulvinar enim.</p>
+            </div>
+
+            <div>
+                <h3>This is a Child Div</h3>
+
+                <p>Ut rutrum interdum lorem, non porttitor tellus volutpat vel. Curabitur vulputate magna a massa sodales quis cursus magna lacinia. Nunc ac vestibulum libero.</p>
+            </div>
+
+            <div>
+                <h3>This is a Child Div</h3>
+
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc sapien leo, vehicula at vestibulum sed, feugiat vitae enim. Aliquam nec est ac elit gravida egestas. Quisque in tellus sodales felis vulputate hendrerit vitae quis velit.</p>
+                <p>Etiam purus leo, accumsan vel condimentum vitae, consectetur in turpis. Fusce malesuada est vel leo rutrum ullamcorper. Etiam eget justo vel lectus vulputate suscipit. Maecenas et pulvinar nulla. Morbi eu mi metus, sit amet imperdiet tellus.</p>
+            </div>
+
+            <div>
+                <h3>This is a Child Div</h3>
+
+                <p>Ut rutrum interdum lorem, non porttitor tellus volutpat vel. Curabitur vulputate magna a massa sodales quis cursus magna lacinia. Nunc ac vestibulum libero.</p>
+            </div>
+        </section>
+
+        <section id="columns2" class="columns full-width">
+            <header>
+                <h2>Sub-Sections - Columns, Full-Width</h2>
+            </header>
+
+            <div>
+                <h3>This is a Child Div</h3>
+
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc sapien leo, vehicula at vestibulum sed, feugiat vitae enim. Aliquam nec est ac elit gravida egestas. Quisque in tellus sodales felis vulputate hendrerit vitae quis velit.</p>
+            </div>
+
+            <div>
+                <h3>This is a Child Div</h3>
+
+                <p>Etiam purus leo, accumsan vel condimentum vitae, consectetur in turpis. Fusce malesuada est vel leo rutrum ullamcorper. Etiam eget justo vel lectus vulputate suscipit. Maecenas et pulvinar nulla.</p>
+                <p>Morbi eu mi metus, sit amet imperdiet tellus. Nullam eget dui non sem dictum vestibulum a eu risus. Pellentesque dolor est, venenatis ac tristique tincidunt, fringilla pulvinar enim.</p>
+            </div>
+
+            <div>
+                <h3>This is a Child Div</h3>
+
+                <p>Ut rutrum interdum lorem, non porttitor tellus volutpat vel. Curabitur vulputate magna a massa sodales quis cursus magna lacinia. Nunc ac vestibulum libero.</p>
+            </div>
+
+            <div>
+                <h3>This is a Child Div</h3>
+
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc sapien leo, vehicula at vestibulum sed, feugiat vitae enim. Aliquam nec est ac elit gravida egestas. Quisque in tellus sodales felis vulputate hendrerit vitae quis velit.</p>
+                <p>Etiam purus leo, accumsan vel condimentum vitae, consectetur in turpis. Fusce malesuada est vel leo rutrum ullamcorper. Etiam eget justo vel lectus vulputate suscipit. Maecenas et pulvinar nulla. Morbi eu mi metus, sit amet imperdiet tellus.</p>
+            </div>
+
+            <div>
+                <h3>This is a Child Div</h3>
+
+                <p>Ut rutrum interdum lorem, non porttitor tellus volutpat vel. Curabitur vulputate magna a massa sodales quis cursus magna lacinia. Nunc ac vestibulum libero.</p>
+            </div>
+        </section>
+
+        <section id="cards" class="columns">
+            <header>
+                <h2>Sub-Sections - Cards</h2>
+            </header>
+
+            <div class="card">
+                <h3>This is a Child Card</h3>
+
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc sapien leo, vehicula at vestibulum sed, feugiat vitae enim. Aliquam nec est ac elit gravida egestas. Quisque in tellus sodales felis vulputate hendrerit vitae quis velit.</p>
+            </div>
+
+            <div class="card success">
+                <h3>This is a Child Card</h3>
+
+                <p>Etiam purus leo, accumsan vel condimentum vitae, consectetur in turpis. Fusce malesuada est vel leo rutrum ullamcorper. Etiam eget justo vel lectus vulputate suscipit. Maecenas et pulvinar nulla.</p>
+                <p>Morbi eu mi metus, sit amet imperdiet tellus. Nullam eget dui non sem dictum vestibulum a eu risus. Pellentesque dolor est, venenatis ac tristique tincidunt, fringilla pulvinar enim.</p>
+            </div>
+
+            <div class="card error">
+                <h3>This is a Child Card</h3>
+
+                <p>Ut rutrum interdum lorem, non porttitor tellus volutpat vel. Curabitur vulputate magna a massa sodales quis cursus magna lacinia. Nunc ac vestibulum libero.</p>
+            </div>
+        </section>
+
+        <section id="cards2" class="columns">
+            <header>
+                <h2>Sub-Sections - Link Cards</h2>
+            </header>
+
+            <a href="#" class="card">
+                <h3>This is a Child Link Card</h3>
+
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc sapien leo, vehicula at vestibulum sed, feugiat vitae enim. Aliquam nec est ac elit gravida egestas. Quisque in tellus sodales felis vulputate hendrerit vitae quis velit.</p>
+            </a>
+
+            <a href="#" class="card">
+                <h3>This is a Child Link Card</h3>
+
+                <p>Etiam purus leo, accumsan vel condimentum vitae, consectetur in turpis. Fusce malesuada est vel leo rutrum ullamcorper. Etiam eget justo vel lectus vulputate suscipit. Maecenas et pulvinar nulla.</p>
+                <p>Morbi eu mi metus, sit amet imperdiet tellus. Nullam eget dui non sem dictum vestibulum a eu risus. Pellentesque dolor est, venenatis ac tristique tincidunt, fringilla pulvinar enim.</p>
+            </a>
+
+            <a href="#" class="card">
+                <h3>This is a Child Link Card</h3>
+
+                <p>Ut rutrum interdum lorem, non porttitor tellus volutpat vel. Curabitur vulputate magna a massa sodales quis cursus magna lacinia. Nunc ac vestibulum libero.</p>
+            </a>
+
+        </section>
+
+        <section id="code">
+            <header>
+                <h2>Code</h2>
+            </header>
+
+            <p>This is some <code>inline code</code> here</p>
+
+            <pre>This is some preformated text.
+This is some preformated text.
+This is some preformated text.
+This is some preformated text.
+This is some preformated text.</pre>
+
+            <pre><code>button[disabled],
+[disabled].button,
+[disabled][type=submit] {
+    box-shadow: none;
+    background: var(--back-disabled);
+}</code></pre>
+
+        </section>
+
+    </main>
+
+    <footer>
+        &copy; Waimea College
+    </footer>
+</body>
+
+</html>
