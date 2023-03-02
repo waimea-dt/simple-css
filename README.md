@@ -34,3 +34,9 @@ Steve Copley, Waimea College
     </nav>
 </header>
 ```
+
+## Demo
+
+See the CSS in action here: https://waimea-cpy.github.io/simple-css/
+
+
