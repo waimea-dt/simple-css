@@ -11,6 +11,8 @@
 
 <body>
 
+    <!-- HEADER AND RESPONSIVE NAV
+    ---------------------------------------------------------------------------->
     <header>
         <h1>Simple CSS Test</h1>
 
@@ -37,12 +39,16 @@
 
     <main>
 
+        <!-- HERO
+        ---------------------------------------------------------------------------->
         <section class="hero">
             <h1>Simple CSS Test</h1>
 
             <p>What a delightful thing this is</p>
         </section>
 
+        <!-- TEXT, HEADINGS, MESSAGES, ETC.
+        ---------------------------------------------------------------------------->
         <section id="text">
             <header>
                 <h2>Text</h2>
@@ -70,6 +76,8 @@
             <p class="error">Error: It's all gone very wrong!</p>
         </section>
 
+        <!-- LISTS
+        ---------------------------------------------------------------------------->
         <section id="lists">
             <header>
                 <h2>Lists</h2>
@@ -105,6 +113,8 @@
             <p>Nice lists!</p>
         </section>
 
+        <!-- LINKS, LINKS AS BUTTONS
+        ---------------------------------------------------------------------------->
         <section id="links">
             <header>
                 <h2>Links and Buttons</h2>
@@ -132,6 +142,8 @@
             <button disabled>Disabled Button</button>
         </section>
 
+        <!-- MEDIA (IMAGES, VIDEO)
+        ---------------------------------------------------------------------------->
         <section id="media">
             <header>
                 <h2>Media</h2>
@@ -141,19 +153,58 @@
 
             <img src="https://picsum.photos/200/300" loading="lazy">
 
-            <p>Here is a really wide image</p>
+            <p>This image has been centred</p>
 
-            <img src="https://picsum.photos/1600/300" loading="lazy">
+            <img src="https://picsum.photos/400/300" class="middle" loading="lazy">
+
+            <p>And this image has been right-aligned</p>
+
+            <img src="https://picsum.photos/600/300" class="right" loading="lazy">
+
+            <p>Here is small image shown full-width</p>
+
+            <img src="https://picsum.photos/300/150" class="full-width" loading="lazy">
+
+            <p>Here is a really wide image, restricted to parent width</p>
+
+            <img src="https://picsum.photos/1600/800" loading="lazy">
 
             <p>Here is an image with a caption</p>
 
-            <figure>
-                <img src="https://picsum.photos/1200/300" loading="lazy">
+            <figure class="middle">
+                <img src="https://picsum.photos/400/300" loading="lazy">
                 <figcaption>What a view!</figcaption>
             </figure>
 
+            <p>Here is an embedded YoueTube video</p>
+
+            <iframe width="560" height="315" loading="lazy" src="https://www.youtube.com/embed/ScMzIvxBSi4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
+            <p>Here is the same, shown full-width</p>
+
+            <iframe width="560" height="315" class="full-width" loading="lazy" src="https://www.youtube.com/embed/ScMzIvxBSi4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
+            <p>Here is a locally hosted video</p>
+
+            <video width="560" height="315" loading="lazy" controls>
+                <source src="media/video.mp4" type="video/mp4">
+                <source src="media/video.webm" type="video/webm">
+                Your browser does not support the video tag.
+            </video>
+
+            <p>And again, full-width</p>
+
+            <video width="560" height="315" class="full-width" loading="lazy" controls>
+                <source src="media/video.mp4" type="video/mp4">
+                <source src="media/video.webm" type="video/webm">
+                Your browser does not support the video tag.
+            </video>
+
+            <p>That'll do for media</p>
         </section>
 
+        <!-- TABLES
+        ---------------------------------------------------------------------------->
         <section id="tables">
             <header>
                 <h2>Tables</h2>
@@ -211,6 +262,8 @@
             <p>It is very nice</p>
         </section>
 
+        <!-- FORMS
+        ---------------------------------------------------------------------------->
         <section id="forms">
             <header>
                 <h2>Forms - Simple</h2>
@@ -224,6 +277,8 @@
             </form>
 
             <p>This form has a header</p>
+
+            <p>The fields are required</p>
 
             <form>
                 <header>
@@ -370,6 +425,8 @@
 
         </section>
 
+        <!-- COLUMNS
+        ---------------------------------------------------------------------------->
         <section id="columns" class="columns">
             <header>
                 <h2>Sub-Sections - Columns</h2>
@@ -446,6 +503,8 @@
             </div>
         </section>
 
+        <!-- COLUMNS WITH CARDS
+        ---------------------------------------------------------------------------->
         <section id="cards" class="columns">
             <header>
                 <h2>Sub-Sections - Cards</h2>
@@ -497,6 +556,8 @@
 
         </section>
 
+        <!-- CODE
+        ---------------------------------------------------------------------------->
         <section id="code">
             <header>
                 <h2>Code</h2>
@@ -521,7 +582,9 @@ This is some preformated text.</pre>
 
     </main>
 
-    <footer>
+    <!-- FOOTER
+    ---------------------------------------------------------------------------->
+        <footer>
         &copy; Waimea College
     </footer>
 </body>

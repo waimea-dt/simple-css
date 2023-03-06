@@ -42,7 +42,11 @@
 
   Version history
 
-  v1.0 - 03 March 2023 - Initial release
+  1.0   - 2023-03-03 - Initial release
+  1.1   - 2023-03-03 - Tweaks to nav link hover
+                     - Ability to specify number of columns in std. content width
+  1.2   - 2023-03-06 - Added styling for embedded videos and YouTube iframes
+                     - Added block alignment classes: .left .right .middle
 
 *************************************************************************************/
 
@@ -55,29 +59,30 @@
 :root {
     --text-colour:        #111;
     --text-inv-colour:    #fff;
- 
+
     --accent-colour:      #c09;
     --link-colour:        #07d;
- 
+
     --back-colour:        #fff;
     --back-alt-color:     #f7f7f7;
     --back-disabled:      #aaa;
     --back-dulled:        #0001;
     --back-menu:          #333;
- 
+
     --border-colour:      #999;
     --shadow-colour:      #0002;
     --shadow-size:        0.5rem;
     --border-radius:      0.3em;
- 
+
     --success-colour:     #3c4;
     --warning-colour:     #f82;
     --error-colour:       #f43;
- 
+
     --code-back-colour:   #111;
     --code-text-colour:   #ccc;
 
     --content-max-width:  60rem;
+    --cols-in-max-width:  3;
 
     --gap:                2.0rem;
 
@@ -111,10 +116,13 @@ body {
     min-height: 100vh;
 }
 
+
 body {
     display: flex;
     flex-direction: column;
     --side-padding: var(--padding-small);
+    --num-cols: var(--cols-in-max-width);
+    --num-gaps: calc(var(--cols-in-max-width) - 1);
 }
 
 @media screen and (min-width: 50rem) {
@@ -137,6 +145,27 @@ p:not(:last-child) {
     margin-bottom: var(--gap);
 }
 
+
+/* ALIGNMENT
+ *************************************************************/
+
+.middle {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.left {
+    margin-right: auto;
+}
+
+.right {
+    margin-left: auto;
+}
+
+.full-width {
+    width: 100%;
+    max-width: 100%;
+}
 
 
 /* BASE COLOURS
@@ -338,12 +367,13 @@ nav a {
     padding: var(--padding-text-small) var(--padding-text);
     border: none;
     color: var(--accent-colour);
+    border-radius: var(--border-radius);
 }
 
 nav a:hover {
     background-color: var(--link-colour);
     color: var(--text-inv-colour);
-    border-radius: var(--border-radius);
+    /* border-radius: var(--border-radius); */
     border: none;
 }
 
@@ -520,27 +550,27 @@ main > section:nth-child(odd):not(.hero) {
     width: var(--column-width);
 }
 
-@media screen and (min-width: 50rem) {
+@media screen and (min-width: 60rem) {
     .columns {
-        --column-width: calc((100% - var(--gap)) / 2);
+        --column-width: calc((100% - (calc(var(--num-gaps) + 0) * var(--gap))) / calc(var(--num-cols) + 0));
     }
 }
 
-@media screen and (min-width: 75em) {
+@media screen and (min-width: 90rem) {
     .columns.full-width {
-        --column-width: calc((100% - (2 * var(--gap))) / 3);
+        --column-width: calc((100% - (calc(var(--num-gaps) + 1) * var(--gap))) / calc(var(--num-cols) + 1));
     }
 }
 
-@media screen and (min-width: 100em) {
+@media screen and (min-width: 120rem) {
     .columns.full-width {
-        --column-width: calc((100% - (3 * var(--gap))) / 4);
+        --column-width: calc((100% - (calc(var(--num-gaps) + 2) * var(--gap))) / calc(var(--num-cols) + 2));
     }
 }
 
-@media screen and (min-width: 125em) {
+@media screen and (min-width: 150rem) {
     .columns.full-width {
-        --column-width: calc((100% - (4 * var(--gap))) / 5);
+        --column-width: calc((100% - (calc(var(--num-gaps) + 3) * var(--gap))) / calc(var(--num-cols) + 3));
     }
 }
 
@@ -583,8 +613,8 @@ a.card:focus {
     box-shadow: 0 calc(var(--shadow-size) / 2) var(--shadow-size) var(--shadow-colour);
 }
 
-.hero,
-.full-width {
+.hero {
+    width: 100%;
     max-width: 100%;
 }
 
@@ -593,7 +623,6 @@ a.card:focus {
     font-size: min(2rem, 7vw);
     display: grid;
     gap: var(--gap);
-    grid-template-columns: 1;
     place-content: center;
     align-items: center;
     background-color: var(--accent-colour);
@@ -636,12 +665,13 @@ li::marker {
 img,
 picture,
 video,
+audio,
 canvas,
 svg,
 figure {
-    display:   block;
+    display: block;
     max-width: 100%;
-    height:    auto;
+    height: auto;
     margin: var(--gap) 0;
 }
 
@@ -661,6 +691,15 @@ figure svg {
 figcaption {
     font-style: italic;
 }
+
+video,
+iframe {
+    aspect-ratio: 16 / 9;  /*should be ok for majority */
+	max-width: 100%;
+    height: auto;
+}
+
+
 
 
 /* TABLES
