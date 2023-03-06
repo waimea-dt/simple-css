@@ -686,7 +686,6 @@ figure {
     flex-direction: column;
     gap: var(--padding-small);
     align-items: center;
-    background-color: var(--back-colour);
 }
 
 figure img,
