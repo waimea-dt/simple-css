@@ -47,6 +47,7 @@
                      - Ability to specify number of columns in std. content width
   1.2   - 2023-03-06 - Added styling for embedded videos and YouTube iframes
                      - Added block alignment classes: .left .right .middle
+                     - Defaulted alignment of images and video to centred
 
 *************************************************************************************/
 
@@ -155,16 +156,20 @@ p:not(:last-child) {
 }
 
 .left {
+    margin-left: 0;
     margin-right: auto;
 }
 
 .right {
+    margin-right: 0;
     margin-left: auto;
 }
 
 .full-width {
     width: 100%;
     max-width: 100%;
+    margin-left: 0;
+    margin-right: 0;
 }
 
 
@@ -668,11 +673,12 @@ video,
 audio,
 canvas,
 svg,
-figure {
+figure,
+iframe {
     display: block;
     max-width: 100%;
     height: auto;
-    margin: var(--gap) 0;
+    margin: var(--gap) auto;
 }
 
 figure {
@@ -680,6 +686,7 @@ figure {
     flex-direction: column;
     gap: var(--padding-small);
     align-items: center;
+    background-color: var(--back-colour);
 }
 
 figure img,
@@ -695,7 +702,6 @@ figcaption {
 video,
 iframe {
     aspect-ratio: 16 / 9;  /*should be ok for majority */
-	max-width: 100%;
     height: auto;
 }
 

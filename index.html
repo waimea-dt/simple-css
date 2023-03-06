@@ -97,7 +97,7 @@
                 <li>Three</li>
             </ol>
 
-            <p>Oh, here is another</p>
+            <p>Oh, here is another with a sub-list</p>
 
             <ol>
                 <li>One</li>
@@ -149,17 +149,17 @@
                 <h2>Media</h2>
             </header>
 
-            <p>Here is a small image</p>
+            <p>Here is a small image (centred by default)</p>
 
             <img src="https://picsum.photos/200/300" loading="lazy">
 
-            <p>This image has been centred</p>
+            <p>This image has been left-aligned</p>
 
-            <img src="https://picsum.photos/400/300" class="middle" loading="lazy">
+            <img src="https://picsum.photos/300/300" class="left" loading="lazy">
 
             <p>And this image has been right-aligned</p>
 
-            <img src="https://picsum.photos/600/300" class="right" loading="lazy">
+            <img src="https://picsum.photos/250/300" class="right" loading="lazy">
 
             <p>Here is small image shown full-width</p>
 
@@ -171,12 +171,12 @@
 
             <p>Here is an image with a caption</p>
 
-            <figure class="middle">
+            <figure>
                 <img src="https://picsum.photos/400/300" loading="lazy">
                 <figcaption>What a view!</figcaption>
             </figure>
 
-            <p>Here is an embedded YoueTube video</p>
+            <p>Here is an embedded YoueTube video (centred by default)</p>
 
             <iframe width="560" height="315" loading="lazy" src="https://www.youtube.com/embed/ScMzIvxBSi4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
@@ -184,7 +184,7 @@
 
             <iframe width="560" height="315" class="full-width" loading="lazy" src="https://www.youtube.com/embed/ScMzIvxBSi4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
-            <p>Here is a locally hosted video</p>
+            <p>Here is a locally hosted video (centred by default)</p>
 
             <video width="560" height="315" loading="lazy" controls>
                 <source src="media/video.mp4" type="video/mp4">
@@ -210,9 +210,28 @@
                 <h2>Tables</h2>
             </header>
 
-            <p>Here is a table</p>
+            <p>Here is a small table (centred by default)</p>
 
             <table>
+                <thead>
+                    <tr>
+                        <th>A</th>
+                        <th>B</th>
+                        <th>C</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>One</td>
+                        <td>Two</td>
+                        <td>Three</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <p>Here is a larger table, left-aligned</p>
+
+            <table class="left">
                 <thead>
                     <tr>
                         <th>A</th>
@@ -269,18 +288,18 @@
                 <h2>Forms - Simple</h2>
             </header>
 
-            <p>Here is a simple form</p>
+            <p>Here is a simple form (centred by default)</p>
 
             <form>
                 <input type="text">
                 <input type="submit">
             </form>
 
-            <p>This form has a header</p>
+            <p>This form has a header and is right-aligned</p>
 
             <p>The fields are required</p>
 
-            <form>
+            <form class="right">
                 <header>
                     <h3>Login</h3>
                 </header>
