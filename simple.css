@@ -11,6 +11,7 @@
 *************************************************************************************
 
   Some extras:
+   - Light / dark mode applied based on system mode and/or class="light/dark"
    - A large 'hero' style panel is supported via class="hero"
    - Responsive section/article/div columns are supported via class="columns"
    - Full-width section/article/div are supported via class="full-width"
@@ -42,57 +43,193 @@
 
   Version history
 
-  1.0   - 2023-03-03 - Initial release
-  1.1   - 2023-03-03 - Tweaks to nav link hover
-                     - Ability to specify number of columns in std. content width
-  1.2   - 2023-03-06 - Added styling for embedded videos and YouTube iframes
-                     - Added block alignment classes: .left .right .middle
-                     - Defaulted alignment of images and video to centred
+  1.0    2023-03-03 - Initial release
+  1.1    2023-03-03 - Tweaks to nav link hover
+                    - Ability to specify number of columns in std. content width
+  1.2    2023-03-06 - Added styling for embedded videos and YouTube iframes
+                    - Added block alignment classes: .left .right .middle
+                    - Defaulted alignment of images and video to centred
+  1.3    2023-03-07 - Cleaned up colour naming
+                    - Tweaked button highlighting
+                    - Added colours for user prefers dark mode / class="light/dark"
 
 *************************************************************************************/
 
 
 
 
-/* Overide these values in your stylesheet (loaded after this)
+/* Colours and Spacing
+ * Overide these values in your stylesheet (loaded after this)
  *************************************************************/
 
-:root {
-    --text-colour:        #111;
-    --text-inv-colour:    #fff;
+ :root {
 
-    --accent-colour:      #c09;
-    --link-colour:        #07d;
+    color-scheme: light dark;
 
-    --back-colour:        #fff;
-    --back-alt-color:     #f7f7f7;
-    --back-disabled:      #aaa;
-    --back-dulled:        #0001;
-    --back-menu:          #333;
+    /*** LIGHT MODE **************************/
 
-    --border-colour:      #999;
-    --shadow-colour:      #0002;
-    --shadow-size:        0.5rem;
-    --border-radius:      0.3em;
+    --light-text-colour:             #111;
+    --light-text-inv-colour:         #fff;
 
-    --success-colour:     #3c4;
-    --warning-colour:     #f82;
-    --error-colour:       #f43;
+    --light-back-colour:             #fff;
+    --light-back-alt-colour:         #f7f7f7;
+    --light-panel-back-colour:       #333;
 
-    --code-back-colour:   #111;
-    --code-text-colour:   #ccc;
+    --light-accent-colour:           #c09;
+    --light-link-colour:             #07d;
+
+    --light-button-highlight-colour: #fff3;
+    --light-button-disabled-colour:  #0002;
+    --light-text-disabled-colour:    #0008;
+
+    --light-input-back-colour:       #c091;
+    --light-table-alt-back-colour:   #0001;
+
+    --light-success-colour:          #3c4;
+    --light-warning-colour:          #f82;
+    --light-error-colour:            #f43;
+
+    --light-border-colour:           #999;
+    --light-shadow-colour:           #0002;
+
+    --light-code-back-colour:        #111;
+    --light-code-text-colour:        #7ad;
+
+    /*** DARK MODE **************************/
+
+    --dark-text-colour:              #ddd;
+    --dark-text-inv-colour:          #111;
+
+    --dark-back-colour:              #111;
+    --dark-back-alt-colour:          #171717;
+    --dark-panel-back-colour:        #333;
+
+    --dark-accent-colour:            #c09;
+    --dark-link-colour:              #06b;
+
+    --dark-button-highlight-colour:  #fff3;
+    --dark-button-disabled-colour:   #fff2;
+    --dark-text-disabled-colour:     #fff8;
+
+    --dark-input-back-colour:        #c091;
+    --dark-table-alt-back-colour:    #fff1;
+
+    --dark-success-colour:           #283;
+    --dark-warning-colour:           #b62;
+    --dark-error-colour:             #b31;
+
+    --dark-border-colour:            #555;
+    --dark-shadow-colour:            #0005;
+
+    --dark-code-back-colour:         #000;
+    --dark-code-text-colour:         #7ad;
+
+    /*** SPACING **************************/
 
     --content-max-width:  60rem;
     --cols-in-max-width:  3;
 
     --gap:                2.0rem;
-
     --padding:            3.0rem;
     --padding-medium:     2.0rem;
     --padding-small:      1.0rem;
-
     --padding-text:       0.6em;
     --padding-text-small: 0.3em;
+
+    --border-radius:      0.3em;
+    --shadow-size:        0.5rem;
+ }
+
+
+
+:root {
+    --text-colour:             var(--light-text-colour);
+    --text-inv-colour:         var(--light-text-inv-colour);
+    --back-colour:             var(--light-back-colour);
+    --back-alt-colour:         var(--light-back-alt-colour);
+    --panel-back-colour:       var(--light-panel-back-colour);
+    --accent-colour:           var(--light-accent-colour);
+    --link-colour:             var(--light-link-colour);
+    --button-highlight-colour: var(--light-button-highlight-colour);
+    --button-disabled-colour:  var(--light-button-disabled-colour);
+    --text-disabled-colour:    var(--light-text-disabled-colour);
+    --input-back-colour:       var(--light-input-back-colour);
+    --table-alt-back-colour:   var(--light-table-alt-back-colour);
+    --success-colour:          var(--light-success-colour);
+    --warning-colour:          var(--light-warning-colour);
+    --error-colour:            var(--light-error-colour);
+    --border-colour:           var(--light-border-colour);
+    --shadow-colour:           var(--light-shadow-colour);
+    --code-back-colour:        var(--light-code-back-colour);
+    --code-text-colour:        var(--light-code-text-colour);
+}
+
+@media screen and (prefers-color-scheme: dark) {
+    :root {
+        --text-colour:             var(--dark-text-colour);
+        --text-inv-colour:         var(--dark-text-inv-colour);
+        --back-colour:             var(--dark-back-colour);
+        --back-alt-colour:         var(--dark-back-alt-colour);
+        --panel-back-colour:       var(--dark-panel-back-colour);
+        --accent-colour:           var(--dark-accent-colour);
+        --link-colour:             var(--dark-link-colour);
+        --button-highlight-colour: var(--dark-button-highlight-colour);
+        --button-disabled-colour:  var(--dark-button-disabled-colour);
+        --text-disabled-colour:    var(--dark-text-disabled-colour);
+        --input-back-colour:       var(--dark-input-back-colour);
+        --table-alt-back-colour:   var(--dark-table-alt-back-colour);
+        --success-colour:          var(--dark-success-colour);
+        --warning-colour:          var(--dark-warning-colour);
+        --error-colour:            var(--dark-error-colour);
+        --border-colour:           var(--dark-border-colour);
+        --shadow-colour:           var(--dark-shadow-colour);
+        --code-back-colour:        var(--dark-code-back-colour);
+        --code-text-colour:        var(--dark-code-text-colour);
+    }
+}
+
+.light {
+    --text-colour:             var(--light-text-colour);
+    --text-inv-colour:         var(--light-text-inv-colour);
+    --back-colour:             var(--light-back-colour);
+    --back-alt-colour:         var(--light-back-alt-colour);
+    --panel-back-colour:       var(--light-panel-back-colour);
+    --accent-colour:           var(--light-accent-colour);
+    --link-colour:             var(--light-link-colour);
+    --button-highlight-colour: var(--light-button-highlight-colour);
+    --button-disabled-colour:  var(--light-button-disabled-colour);
+    --text-disabled-colour:    var(--light-text-disabled-colour);
+    --input-back-colour:       var(--light-input-back-colour);
+    --table-alt-back-colour:   var(--light-table-alt-back-colour);
+    --success-colour:          var(--light-success-colour);
+    --warning-colour:          var(--light-warning-colour);
+    --error-colour:            var(--light-error-colour);
+    --border-colour:           var(--light-border-colour);
+    --shadow-colour:           var(--light-shadow-colour);
+    --code-back-colour:        var(--light-code-back-colour);
+    --code-text-colour:        var(--light-code-text-colour);
+}
+
+.dark {
+    --text-colour:             var(--dark-text-colour);
+    --text-inv-colour:         var(--dark-text-inv-colour);
+    --back-colour:             var(--dark-back-colour);
+    --back-alt-colour:         var(--dark-back-alt-colour);
+    --panel-back-colour:       var(--dark-panel-back-colour);
+    --accent-colour:           var(--dark-accent-colour);
+    --link-colour:             var(--dark-link-colour);
+    --button-highlight-colour: var(--dark-button-highlight-colour);
+    --button-disabled-colour:  var(--dark-button-disabled-colour);
+    --text-disabled-colour:    var(--dark-text-disabled-colour);
+    --input-back-colour:       var(--dark-input-back-colour);
+    --table-alt-back-colour:   var(--dark-table-alt-back-colour);
+    --success-colour:          var(--dark-success-colour);
+    --warning-colour:          var(--dark-warning-colour);
+    --error-colour:            var(--dark-error-colour);
+    --border-colour:           var(--dark-border-colour);
+    --shadow-colour:           var(--dark-shadow-colour);
+    --code-back-colour:        var(--dark-code-back-colour);
+    --code-text-colour:        var(--dark-code-text-colour);
 }
 
 
@@ -315,6 +452,10 @@ body > header {
     box-shadow: 0 calc(var(--shadow-size) / 2) var(--shadow-size) var(--shadow-colour);
 }
 
+body > header > :is(div, section, article, nav, aside) {
+    padding: 0;
+}
+
 
 body > header h1 {
     color: var(--text-colour);
@@ -403,7 +544,7 @@ nav [type=checkbox] ~ ul {
     padding-top: calc( 2 * var(--padding) );
     overflow-y: auto;
 
-    background-color: var(--back-menu);
+    background-color: var(--panel-back-colour);
 }
 
 nav [type=checkbox]:checked ~ ul {
@@ -506,6 +647,7 @@ aside,
 div {
     padding: var(--padding) var(--side-padding);
     scroll-margin-top: var(--padding);
+    color: var(--text-colour);
 }
 
 main > article:not(.full-width):not(.hero),
@@ -517,7 +659,12 @@ main > section:not(.full-width):not(.hero) {
 
 main > article:nth-child(odd):not(.hero),
 main > section:nth-child(odd):not(.hero) {
-    background-color: var(--back-alt-color);
+    background-color: var(--back-colour);
+}
+
+main > article:nth-child(even):not(.hero),
+main > section:nth-child(even):not(.hero) {
+    background-color: var(--back-alt-colour);
 }
 
 :is(article, section, aside, div, .card) > :first-child,
@@ -737,7 +884,7 @@ th {
 }
 
 tr:nth-child(even) {
-    background: var(--back-dulled);
+    background: var(--table-alt-back-colour);
 }
 
 
@@ -834,7 +981,7 @@ optgroup {
     height: 2.1em;
     padding: var(--padding-text-small) var(--padding-text);
     border: 1px solid var(--border-colour);
-    background-color: var(--back-colour);
+    background-color: var(--input-back-colour);
     border-radius: var(--border-radius);
     transition: all 300ms;
 }
@@ -974,17 +1121,17 @@ textarea[required]:invalid {
     border-radius: var(--border-radius);
     height: auto;
     vertical-align: baseline;
-    box-shadow: 0 0 rgba(17, 17, 17, 0) inset;
+    box-shadow: inset 0 0 0 transparent;
 }
 
 :is(button, .button, [type=submit]):hover,
 :is(button, .button, [type=submit]):focus {
-    box-shadow: inset 0 0 0 99em rgba(255, 255, 255, 0.2);
+    box-shadow: inset 0 0 0 99em var(--button-highlight-colour);
     border: none;
 }
 
 :is(button, .button, [type=submit]):active {
-    box-shadow: inset 0 0 0 99em rgba(17, 17, 17, 0.2);
+    box-shadow: inset 0 0 0 99em var(--shadow-colour);
     border: none;
 }
 
@@ -993,15 +1140,17 @@ button.disabled,
 .button.disabled,
 input[disabled] {
     box-shadow: none;
-    background-color: var(--back-disabled);
-    cursor: default;
+    color: var(--text-disabled-colour);
+    background-color: var(--button-disabled-colour);
+    cursor: not-allowed;
+}
+
+button[disabled]:active,
+button.disabled:active,
+.button.disabled:active,
+input[disabled]:active {
     pointer-events: none;
 }
-
-input[disabled] {
-    background-color: var(--back-dulled);
-}
-
 
 
 /* CODE
