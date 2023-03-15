@@ -87,7 +87,7 @@
     --light-footer-back-colour:      var(--light-accent-colour);
 
     --light-card-back-colour:        #fff;
-    --light-panel-back-colour:       #222;
+    --light-menu-panel-back-colour:  #222;
 
     --light-button-highlight-colour: #fff3;
     --light-button-disabled-colour:  #0002;
@@ -104,7 +104,7 @@
     --light-error-colour:            #f43;
 
     --light-border-colour:           #999;
-    --light-shadow-colour:           #0002;
+    --light-shadow-colour:           #0003;
 
     --light-code-back-colour:        #111;
     --light-code-text-colour:        #7ad;
@@ -121,13 +121,13 @@
     --dark-accent-hint-colour:       #d0a2;
     --dark-link-colour:              #06b;
 
-    --dark-back-colour:              #111;
-    --dark-back-alt-colour:          #171717;
+    --dark-back-colour:              #090909;
+    --dark-back-alt-colour:          #0c0c0c;
 
     --dark-header-back-colour:       #000;
     --dark-footer-back-colour:       var(--dark-accent-colour);
     --dark-card-back-colour:         #000;
-    --dark-panel-back-colour:        #222;
+    --dark-menu-panel-back-colour:   #222;
 
     --dark-button-highlight-colour:  #fff3;
     --dark-button-disabled-colour:   #fff2;
@@ -143,13 +143,13 @@
     --dark-warning-colour:           #b62;
     --dark-error-colour:             #b31;
 
-    --dark-border-colour:            #555;
-    --dark-shadow-colour:            #0009;
+    --dark-border-colour:            #444;
+    --dark-shadow-colour:            #fff1;
 
     --dark-code-back-colour:         #000;
     --dark-code-text-colour:         #7ad;
 
-    --dark-scrollbar-colour:         #666;
+    --dark-scrollbar-colour:         #444;
     --dark-scrollbar-back-colour:    #070707;
 
     /*** IMAGES **************************/
@@ -162,8 +162,8 @@
     --cols-in-max-width:  3;
 
     --gap:                2.0rem;
-    --padding:            2.0rem;
-    --padding-medium:     1.5rem;
+    --padding:            3.0rem;
+    --padding-medium:     2.0rem;
     --padding-small:      1.0rem;
     --padding-text:       0.6em;
     --padding-text-small: 0.3em;
@@ -185,7 +185,7 @@
     --header-back-colour:      var(--light-header-back-colour);
     --footer-back-colour:      var(--light-footer-back-colour);
     --card-back-colour:        var(--light-card-back-colour);
-    --panel-back-colour:       var(--light-panel-back-colour);
+    --menu-panel-back-colour:  var(--light-menu-panel-back-colour);
     --button-highlight-colour: var(--light-button-highlight-colour);
     --button-disabled-colour:  var(--light-button-disabled-colour);
     --text-disabled-colour:    var(--light-text-disabled-colour);
@@ -216,7 +216,7 @@
         --header-back-colour:      var(--dark-header-back-colour);
         --footer-back-colour:      var(--dark-footer-back-colour);
         --card-back-colour:        var(--dark-card-back-colour);
-        --panel-back-colour:       var(--dark-panel-back-colour);
+        --menu-panel-back-colour:  var(--dark-menu-panel-back-colour);
         --button-highlight-colour: var(--dark-button-highlight-colour);
         --button-disabled-colour:  var(--dark-button-disabled-colour);
         --text-disabled-colour:    var(--dark-text-disabled-colour);
@@ -247,7 +247,7 @@
     --header-back-colour:      var(--light-header-back-colour);
     --footer-back-colour:      var(--light-footer-back-colour);
     --card-back-colour:        var(--light-card-back-colour);
-    --panel-back-colour:       var(--light-panel-back-colour);
+    --menu-panel-back-colour:  var(--light-menu-panel-back-colour);
     --button-highlight-colour: var(--light-button-highlight-colour);
     --button-disabled-colour:  var(--light-button-disabled-colour);
     --text-disabled-colour:    var(--light-text-disabled-colour);
@@ -277,7 +277,7 @@
     --header-back-colour:      var(--dark-header-back-colour);
     --footer-back-colour:      var(--dark-footer-back-colour);
     --card-back-colour:        var(--dark-card-back-colour);
-    --panel-back-colour:       var(--dark-panel-back-colour);
+    --menu-panel-back-colour:  var(--dark-menu-panel-back-colour);
     --button-highlight-colour: var(--dark-button-highlight-colour);
     --button-disabled-colour:  var(--dark-button-disabled-colour);
     --text-disabled-colour:    var(--dark-text-disabled-colour);
@@ -329,7 +329,7 @@ body {
 
 @media screen and (min-width: 50rem) {
     body {
-        --side-padding: var(--padding);
+        --side-padding: var(--padding-medium);
     }
 }
 
@@ -406,8 +406,7 @@ body::-webkit-scrollbar {
 
 body::-webkit-scrollbar-thumb {
     background: var(--scrollbar-colour);
-    border: 2px solid var(--scrollbar-back-colour);
-    border-radius: 6px;
+    border-radius: 3px;
 }
 
 body::-webkit-scrollbar-thumb:hover {
@@ -559,6 +558,7 @@ body > header h1 {
     margin: 0;
     padding: 0;
     text-align: center;
+    flex: 1;
 }
 
 @media screen and (min-width: 64em) {
@@ -612,8 +612,7 @@ nav a {
     border-radius: var(--border-radius);
 }
 
-nav a:hover,
-nav a:focus {
+nav a:hover {
     background-color: var(--link-colour);
     box-shadow: inset 0 0 0 99em var(--button-highlight-colour);
     color: var(--text-inv-colour);
@@ -640,10 +639,10 @@ nav [type=checkbox] ~ ul {
     gap: 0;
 
     padding: var(--side-padding);
-    padding-top: calc( 1.5 * var(--padding) );
+    padding-top: calc(1.5 * var(--padding));
     overflow-y: auto;
 
-    background-color: var(--panel-back-colour);
+    background-color: var(--menu-panel-back-colour);
 }
 
 nav [type=checkbox]:checked ~ ul {
@@ -655,10 +654,8 @@ nav [type=checkbox] ~ ul a {
     display: block;
 }
 
-nav [type=checkbox] ~ ul a:hover,
-nav [type=checkbox] ~ ul a:focus {
+nav [type=checkbox] ~ ul a:hover {
     color: var(--text-inv-colour);
-    display: block;
 }
 
 nav label {
@@ -685,7 +682,7 @@ nav > label {
 nav ul > label {
     position: absolute;
     right: var(--side-padding);
-    top: calc( 1.5 * var(--padding-small) );
+    top: var(--padding-medium);
 }
 
 nav > label::before {
@@ -704,7 +701,6 @@ body.dark nav > label::before {
 
 nav ul > label::before {
     content: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' width='24' height='24'%3E%3Cpath fill='none' d='M0 0h24v24H0z'/%3E%3Cpath d='M12 10.586l4.95-4.95 1.414 1.414-4.95 4.95 4.95 4.95-1.414 1.414-4.95-4.95-4.95 4.95-1.414-1.414 4.95-4.95-4.95-4.95L7.05 5.636z' fill='white'/%3E%3C/svg%3E");
-    fill: var(--text-inv-colour);
 }
 
 
@@ -727,7 +723,7 @@ body > nav ul {
 
         flex-direction: row;
 
-        padding: 0;
+        padding: var(--padding-text-small) 0;
         overflow-y: initial;
 
         font-size: inherit;
@@ -799,6 +795,10 @@ main > section:not(.hero):nth-child(even) {
 :is(article, section, aside, div, .card) > footer {
     margin-top: var(--gap);
 }
+
+
+/* COLUMNS & CARDS
+ *************************************************************/
 
 .columns {
     --column-width: 100%;
@@ -880,6 +880,10 @@ a.card:focus {
     box-shadow: 0 calc(var(--shadow-size) / 2) var(--shadow-size) var(--shadow-colour);
 }
 
+
+/* HERO SECTION
+ *************************************************************/
+
 .hero {
     width: 100%;
     max-width: 100%;
@@ -907,11 +911,16 @@ a.card:focus {
     padding: 0;
     margin: 0;
     text-align: center;
+    text-shadow: 0 0.03em 0.05em var(--shadow-colour);
 }
 
 .hero h1 {
     font-size: 3em;
     font-weight: bold;
+}
+
+.hero h2 {
+    font-size: 1.5em;
 }
 
 
@@ -1110,7 +1119,7 @@ optgroup {
 
 :is(input, textarea, select):focus {
     border: 1px solid var(--accent-colour);
-    outline: 0;
+    /* outline: 0; */
 }
 
 [type=color] {
@@ -1157,7 +1166,7 @@ textarea {
 /* Checkbox and radio button tweaks */
 
 :is(input, textarea, select, fieldset) + :is([type=checkbox], [type=radio]) {
-    margin-top: calc(1.5 * var(--padding-small));
+    margin-top: var(--padding-medium);
 }
 
 [type=checkbox] + label,
