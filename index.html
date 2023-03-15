@@ -7,6 +7,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Simple CSS Test</title>
     <link rel="stylesheet" href="simple.css">
+
+    <script>
+        function toggleTheme() {
+            const body = document.body;
+            const toggle = document.getElementById( 'theme-toggle' );
+            let theme = toggle.innerText.toLowerCase();
+
+            theme = (theme == 'light') ? 'Dark' : 'Light';
+
+            toggle.innerText = theme;
+            body.className = theme.toLowerCase();
+        }
+    </script>
 </head>
 
 <body class="light">
@@ -14,6 +27,8 @@
     <!-- HEADER AND RESPONSIVE NAV
     ---------------------------------------------------------------------------->
     <header>
+        <button id="theme-toggle" onclick="toggleTheme();">Light</button>
+
         <h1>Simple CSS Test</h1>
 
         <nav>
@@ -603,7 +618,7 @@ This is some preformated text.</pre>
 
     <!-- FOOTER
     ---------------------------------------------------------------------------->
-        <footer>
+    <footer>
         &copy; Waimea College
     </footer>
 </body>
