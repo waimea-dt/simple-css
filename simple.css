@@ -57,6 +57,14 @@
                     - Tweaked slightly the light / dark backgrounds
                     - Added scrollbar colouring
                     - Added easy hero image
+  1.5    2023-03-17 - Alignment helper classes now align text too
+
+  1.6    2023-03-20 - Refined the display of forms to be a bit more modern
+                    - Cards now have shadows to raise them off the page a little
+                    - Buttons and link cards now have shadows on hover
+                    - Colours tweaked (again!)
+                    - Added shadow / glow to hero text
+                    - Forms within cards don't get additional 'card' styling
 
 *************************************************************************************/
 
@@ -71,17 +79,28 @@
 
     color-scheme: light dark;
 
+    /*** HERO IMAGE **************************/
+
+    --hero-image:                    url(hero.jpg);
+
+    /*** WIDTH & COLS **************************/
+
+    --content-max-width:  60rem;
+    --cols-in-max-width:  3;
+
     /*** LIGHT MODE **************************/
 
     --light-text-colour:             #111;
     --light-text-inv-colour:         #fff;
 
     --light-accent-colour:           #c09;
-    --light-accent-hint-colour:      #c091;
-    --light-link-colour:             #07d;
+    --light-accent-hint-colour:      #c092;
 
-    --light-back-colour:             #f7f7f7;
-    --light-back-alt-colour:         #f0f0f0;
+    --light-link-colour:             #07d;
+    --light-button-colour:           #07d;
+
+    --light-back-colour:             #fff;
+    --light-back-alt-colour:         #f7f7f7;
 
     --light-header-back-colour:      #fff;
     --light-footer-back-colour:      var(--light-accent-colour);
@@ -89,7 +108,7 @@
     --light-card-back-colour:        #fff;
     --light-menu-panel-back-colour:  #222;
 
-    --light-button-highlight-colour: #fff3;
+    --light-button-highlight-colour: #fff1;
     --light-button-disabled-colour:  #0002;
     --light-text-disabled-colour:    #0008;
 
@@ -99,12 +118,15 @@
     --light-table-back-colour:       var(--light-card-back-colour);
     --light-table-alt-back-colour:   var(--light-accent-hint-colour);
 
-    --light-success-colour:          #3c4;
-    --light-warning-colour:          #f82;
+    --light-success-colour:          #373;
+    --light-warning-colour:          #e60;
     --light-error-colour:            #f43;
 
     --light-border-colour:           #999;
-    --light-shadow-colour:           #0003;
+
+    --light-glow-colour:             #0002;
+    --light-shadow-colour:           #0002;
+    --light-shadow-deep-colour:      #0004;
 
     --light-code-back-colour:        #111;
     --light-code-text-colour:        #7ad;
@@ -115,11 +137,13 @@
     /*** DARK MODE **************************/
 
     --dark-text-colour:              #ddd;
-    --dark-text-inv-colour:          #111;
+    --dark-text-inv-colour:          #000;
 
     --dark-accent-colour:            #d0a;
-    --dark-accent-hint-colour:       #d0a2;
-    --dark-link-colour:              #06b;
+    --dark-accent-hint-colour:       #d0a3;
+
+    --dark-link-colour:              #07d;
+    --dark-button-colour:            #047;
 
     --dark-back-colour:              #090909;
     --dark-back-alt-colour:          #0c0c0c;
@@ -129,7 +153,7 @@
     --dark-card-back-colour:         #000;
     --dark-menu-panel-back-colour:   #222;
 
-    --dark-button-highlight-colour:  #fff3;
+    --dark-button-highlight-colour:  #fff2;
     --dark-button-disabled-colour:   #fff2;
     --dark-text-disabled-colour:     #fff8;
 
@@ -139,12 +163,15 @@
     --dark-table-back-colour:        var(--dark-card-back-colour);
     --dark-table-alt-back-colour:    var(--dark-accent-hint-colour);
 
-    --dark-success-colour:           #283;
-    --dark-warning-colour:           #b62;
-    --dark-error-colour:             #b31;
+    --dark-success-colour:           #373;
+    --dark-warning-colour:           #e60;
+    --dark-error-colour:             #f43;
 
-    --dark-border-colour:            #444;
-    --dark-shadow-colour:            #fff1;
+    --dark-border-colour:            #333;
+
+    --dark-glow-colour:              #fff2;
+    --dark-shadow-colour:            #0004;
+    --dark-shadow-deep-colour:       #0008;
 
     --dark-code-back-colour:         #000;
     --dark-code-text-colour:         #7ad;
@@ -152,25 +179,24 @@
     --dark-scrollbar-colour:         #444;
     --dark-scrollbar-back-colour:    #070707;
 
-    /*** IMAGES **************************/
-
-    --hero-image:                    url(hero.jpg);
-
     /*** SPACING **************************/
 
-    --content-max-width:  60rem;
-    --cols-in-max-width:  3;
+    --gap:                 2.0rem;
 
-    --gap:                2.0rem;
-    --padding:            3.0rem;
-    --padding-medium:     2.0rem;
-    --padding-small:      1.0rem;
-    --padding-text:       0.6em;
-    --padding-text-small: 0.3em;
+    --padding:             3.0rem;
+    --padding-medium:      2.0rem;
+    --padding-small:       1.0rem;
+    --padding-tiny:        0.3rem;
+    --padding-text:        0.6em;
+    --padding-text-small:  0.3em;
 
-    --border-radius:      0.3em;
-    --shadow-size:        0.5rem;
- }
+    --border-radius:       0.15em;
+
+    --shadow-size-tiny:    0.3rem;
+    --shadow-size-small:   0.5rem;
+    --shadow-size-medium:  1.0rem;
+    --shadow-size-large:   2.0rem;
+}
 
 
 
@@ -180,6 +206,7 @@
     --accent-colour:           var(--light-accent-colour);
     --accent-hint-colour:      var(--light-accent-hint-colour);
     --link-colour:             var(--light-link-colour);
+    --button-colour:           var(--light-button-colour);
     --back-colour:             var(--light-back-colour);
     --back-alt-colour:         var(--light-back-alt-colour);
     --header-back-colour:      var(--light-header-back-colour);
@@ -197,7 +224,9 @@
     --warning-colour:          var(--light-warning-colour);
     --error-colour:            var(--light-error-colour);
     --border-colour:           var(--light-border-colour);
+    --glow-colour:             var(--light-glow-colour);
     --shadow-colour:           var(--light-shadow-colour);
+    --shadow-deep-colour:      var(--light-shadow-deep-colour);
     --code-back-colour:        var(--light-code-back-colour);
     --code-text-colour:        var(--light-code-text-colour);
     --scrollbar-colour:        var(--light-scrollbar-colour);
@@ -211,6 +240,7 @@
         --accent-colour:           var(--dark-accent-colour);
         --accent-hint-colour:      var(--dark-accent-hint-colour);
         --link-colour:             var(--dark-link-colour);
+        --button-colour:           var(--dark-button-colour);
         --back-colour:             var(--dark-back-colour);
         --back-alt-colour:         var(--dark-back-alt-colour);
         --header-back-colour:      var(--dark-header-back-colour);
@@ -228,7 +258,9 @@
         --warning-colour:          var(--dark-warning-colour);
         --error-colour:            var(--dark-error-colour);
         --border-colour:           var(--dark-border-colour);
+        --glow-colour:             var(--dark-glow-colour);
         --shadow-colour:           var(--dark-shadow-colour);
+        --shadow-deep-colour:      var(--dark-shadow-deep-colour);
         --code-back-colour:        var(--dark-code-back-colour);
         --code-text-colour:        var(--dark-code-text-colour);
         --scrollbar-colour:        var(--dark-scrollbar-colour);
@@ -242,6 +274,7 @@
     --accent-colour:           var(--light-accent-colour);
     --accent-hint-colour:      var(--light-accent-hint-colour);
     --link-colour:             var(--light-link-colour);
+    --button-colour:           var(--light-button-colour);
     --back-colour:             var(--light-back-colour);
     --back-alt-colour:         var(--light-back-alt-colour);
     --header-back-colour:      var(--light-header-back-colour);
@@ -259,7 +292,9 @@
     --warning-colour:          var(--light-warning-colour);
     --error-colour:            var(--light-error-colour);
     --border-colour:           var(--light-border-colour);
+    --glow-colour:             var(--light-glow-colour);
     --shadow-colour:           var(--light-shadow-colour);
+    --shadow-deep-colour:      var(--light-shadow-deep-colour);
     --code-back-colour:        var(--light-code-back-colour);
     --code-text-colour:        var(--light-code-text-colour);
     --scrollbar-colour:        var(--light-scrollbar-colour);
@@ -272,6 +307,7 @@
     --accent-colour:           var(--dark-accent-colour);
     --accent-hint-colour:      var(--dark-accent-hint-colour);
     --link-colour:             var(--dark-link-colour);
+    --button-colour:           var(--dark-button-colour);
     --back-colour:             var(--dark-back-colour);
     --back-alt-colour:         var(--dark-back-alt-colour);
     --header-back-colour:      var(--dark-header-back-colour);
@@ -289,7 +325,9 @@
     --warning-colour:          var(--dark-warning-colour);
     --error-colour:            var(--dark-error-colour);
     --border-colour:           var(--dark-border-colour);
+    --glow-colour:             var(--dark-glow-colour);
     --shadow-colour:           var(--dark-shadow-colour);
+    --shadow-deep-colour:      var(--dark-shadow-deep-colour);
     --code-back-colour:        var(--dark-code-back-colour);
     --code-text-colour:        var(--dark-code-text-colour);
     --scrollbar-colour:        var(--dark-scrollbar-colour);
@@ -354,16 +392,23 @@ p:not(:last-child) {
 .middle {
     margin-left: auto;
     margin-right: auto;
+    text-align: center;
 }
 
 .left {
     margin-left: 0;
     margin-right: auto;
+    text-align: left;
 }
 
 .right {
     margin-right: 0;
     margin-left: auto;
+    text-align: right;
+}
+
+:is(.middle, .left, .right) > * {
+    text-align: initial;
 }
 
 .full-width {
@@ -389,6 +434,25 @@ h4,
 h5,
 h6 {
     color: var(--accent-colour);
+}
+
+
+/* SHADOWS
+ *************************************************************/
+body {
+    --ambient-shadow-tiny:     0 calc(var(--shadow-size-tiny) / 6)   calc(var(--shadow-size-tiny) / 2)   var(--shadow-deep-colour);
+    --key-light-shadow-tiny:   0 calc(var(--shadow-size-tiny) / 2)   var(--shadow-size-tiny)             var(--shadow-colour);
+    --ambient-shadow-small:    0 calc(var(--shadow-size-small) / 6)  calc(var(--shadow-size-small) / 2)  var(--shadow-deep-colour);
+    --key-light-shadow-small:  0 calc(var(--shadow-size-small) / 2)  var(--shadow-size-small)            var(--shadow-colour);
+    --ambient-shadow-medium:   0 calc(var(--shadow-size-medium) / 6) calc(var(--shadow-size-medium) / 2) var(--shadow-deep-colour);
+    --key-light-shadow-medium: 0 calc(var(--shadow-size-medium) / 2) var(--shadow-size-medium)           var(--shadow-colour);
+    --ambient-shadow-large:    0 calc(var(--shadow-size-large) / 6)  calc(var(--shadow-size-large) / 2)  var(--shadow-deep-colour);
+    --key-light-shadow-large:  0 calc(var(--shadow-size-large) / 2)  var(--shadow-size-large)            var(--shadow-colour);
+
+    --shadow-tiny:   var(--ambient-shadow-tiny),   var(--key-light-shadow-tiny);
+    --shadow-small:  var(--ambient-shadow-small),  var(--key-light-shadow-small);
+    --shadow-medium: var(--ambient-shadow-medium), var(--key-light-shadow-medium);
+    --shadow-large:  var(--ambient-shadow-large),  var(--key-light-shadow-large);
 }
 
 
@@ -491,10 +555,10 @@ a {
     text-decoration: none;
     box-shadow: none;
     border-bottom: 1px solid transparent;
-    transition: background-color    300ms,
-                color               300ms,
-                box-shadow          300ms,
-                border-bottom-color 300ms;
+    transition: background-color    200ms,
+                color               200ms,
+                box-shadow          200ms,
+                border-color        200ms;
 }
 
 a:active,
@@ -544,7 +608,7 @@ body > header {
     width: 100%;
     z-index: 99;
     background-color: var(--header-back-colour);
-    box-shadow: 0 calc(var(--shadow-size) / 2) var(--shadow-size) var(--shadow-colour);
+    box-shadow: var(--shadow-medium);
 }
 
 body > header > :is(div, section, article, nav, aside) {
@@ -593,7 +657,6 @@ nav ul {
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 0;
 
     font-size: 1.2rem;
     list-style: none;
@@ -613,13 +676,14 @@ nav a {
 }
 
 nav a:hover {
-    background-color: var(--link-colour);
-    box-shadow: inset 0 0 0 99em var(--button-highlight-colour);
-    color: var(--text-inv-colour);
+    background-color: var(--button-colour);
+    box-shadow: inset 0 0 0 99em var(--button-highlight-colour), var(--shadow-tiny);
+    color: var(--light-text-inv-colour);
     border: none;
 }
 
-/* nav has a togle input feature */
+/* nav has a toggle input feature */
+
 nav [type=checkbox] {
     display: none;
     margin: 0;
@@ -636,7 +700,6 @@ nav [type=checkbox] ~ ul {
 
     flex-direction: column;
     justify-content: flex-start;
-    gap: 0;
 
     padding: var(--side-padding);
     padding-top: calc(1.5 * var(--padding));
@@ -655,7 +718,7 @@ nav [type=checkbox] ~ ul a {
 }
 
 nav [type=checkbox] ~ ul a:hover {
-    color: var(--text-inv-colour);
+    color: var(--light-text-inv-colour);
 }
 
 nav label {
@@ -682,7 +745,7 @@ nav > label {
 nav ul > label {
     position: absolute;
     right: var(--side-padding);
-    top: var(--padding-medium);
+    top: calc(var(--padding-small) + 0.5rem);
 }
 
 nav > label::before {
@@ -705,6 +768,7 @@ nav ul > label::before {
 
 
 /* Nav is directly in body, not part of header */
+
 body > nav ul {
     width: 100%;
     padding: var(--padding) var(--side-padding);
@@ -723,7 +787,7 @@ body > nav ul {
 
         flex-direction: row;
 
-        padding: var(--padding-text-small) 0;
+        padding: var(--padding-tiny);
         overflow-y: initial;
 
         font-size: inherit;
@@ -739,14 +803,13 @@ body > nav ul {
 
     nav a:hover,
     nav [type=checkbox] ~ ul a:hover {
-        color: var(--text-inv-colour);
+        color: var(--light-text-inv-colour);
     }
 
     nav label {
         display: none;
     }
 }
-
 
 
 /* PAGE SECTIONS
@@ -757,7 +820,7 @@ article,
 aside,
 div {
     padding: var(--padding) var(--side-padding);
-    scroll-margin-top: var(--padding);
+    scroll-margin-top: calc(var(--padding) + 1rem) ;
     color: var(--text-colour);
 }
 
@@ -795,6 +858,50 @@ main > section:not(.hero):nth-child(even) {
 :is(article, section, aside, div, .card) > footer {
     margin-top: var(--gap);
 }
+
+
+/* HERO SECTION
+ *************************************************************/
+
+.hero {
+    width: 100%;
+    max-width: 100%;
+}
+
+.hero {
+    min-height: 75vh;
+    font-size: min(2rem, 7vw);
+
+    display: grid;
+    gap: var(--gap);
+    place-content: center;
+    align-items: center;
+
+    background-color: var(--accent-colour);
+
+    background-image: var(--hero-image);
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+}
+
+.hero > * {
+    color: var(--text-inv-colour);
+    padding: 0;
+    margin: 0;
+    text-align: center;
+    text-shadow: 0 0.05em 0.1em var(--glow-colour);
+}
+
+.hero h1 {
+    font-size: 3em;
+    font-weight: bold;
+}
+
+.hero h2 {
+    font-size: 1.5em;
+}
+
 
 
 /* COLUMNS & CARDS
@@ -844,10 +951,10 @@ main > section:not(.hero):nth-child(even) {
 .card,
 .columns > .card {
     display: block;
-    border: 1px solid var(--border-colour);
-    border-radius: var(--border-radius);
-    background-color: var(--card-back-colour);
     padding: var(--padding-medium);
+    border: 1px solid var(--border-colour);
+    background-color: var(--card-back-colour);
+    box-shadow: var(--shadow-small);
 }
 
 .columns > .card {
@@ -877,50 +984,7 @@ a.card {
 a.card:hover,
 a.card:focus {
     border-color: var(--link-colour);
-    box-shadow: 0 calc(var(--shadow-size) / 2) var(--shadow-size) var(--shadow-colour);
-}
-
-
-/* HERO SECTION
- *************************************************************/
-
-.hero {
-    width: 100%;
-    max-width: 100%;
-}
-
-.hero {
-    min-height: 75vh;
-    font-size: min(2rem, 7vw);
-
-    display: grid;
-    gap: var(--gap);
-    place-content: center;
-    align-items: center;
-
-    background-color: var(--accent-colour);
-
-    background-image: var(--hero-image);
-    background-size: cover;
-    background-position: center;
-    background-attachment: fixed;
-}
-
-.hero > * {
-    color: var(--text-inv-colour);
-    padding: 0;
-    margin: 0;
-    text-align: center;
-    text-shadow: 0 0.03em 0.05em var(--shadow-colour);
-}
-
-.hero h1 {
-    font-size: 3em;
-    font-weight: bold;
-}
-
-.hero h2 {
-    font-size: 1.5em;
+    box-shadow: var(--shadow-large);
 }
 
 
@@ -978,10 +1042,13 @@ figcaption {
 
 video,
 iframe {
-    aspect-ratio: 16 / 9;  /*should be ok for majority */
+    aspect-ratio: 16 / 9;  /* should be ok for majority */
     height: auto;
 }
 
+.bordered {
+    border: 1px solid var(--border-colour);
+}
 
 
 
@@ -1024,13 +1091,24 @@ tr:nth-child(even) {
  *************************************************************/
 
 form {
-    border: 1px solid var(--border-colour);
-    border-radius: var(--border-radius);
-    background-color: var(--form-back-colour);
-    padding: var(--gap);
-    margin: var(--gap) auto;
     width: 100%;
     max-width: 30rem;
+    padding: var(--gap);
+    margin: var(--gap) auto;
+
+    border: 1px solid var(--border-colour);
+    background-color: var(--form-back-colour);
+    box-shadow: var(--shadow-small);
+}
+
+/* Assume forms in cards don't need to be styled as a 'card'*/
+.card form {
+    max-width: 100%;
+    padding: 0;
+
+    border: none;
+    background-color: transparent;
+    box-shadow: none;
 }
 
 
@@ -1111,15 +1189,21 @@ optgroup {
     line-height: 1.5;
     height: 2.1em;
     padding: var(--padding-text-small) var(--padding-text);
-    border: 1px solid var(--border-colour);
+    border: none;
+    border-bottom: 3px solid var(--border-colour);
+    color: var(--text-colour);
     background-color: var(--input-back-colour);
-    border-radius: var(--border-radius);
-    transition: all 300ms;
+    transition: all 200ms;
 }
 
 :is(input, textarea, select):focus {
-    border: 1px solid var(--accent-colour);
-    /* outline: 0; */
+    border-bottom-color: var(--accent-colour);
+    outline: 0;
+}
+
+:is(input[type=checkbox], input[type=radio], input[type=range]):focus {
+    outline: 2px solid var(--accent-colour);
+    border-radius: var(--border-radius);
 }
 
 [type=color] {
@@ -1212,21 +1296,28 @@ textarea[required]:invalid {
  *************************************************************/
 
 :is(button, .button, [type=submit]) {
-    color: inherit;
-    font: inherit;
-    margin: 0;
     display: inline-block;
-    text-align: center;
-    letter-spacing: inherit;
     margin: 0;
     padding: var(--padding-text-small) var(--padding-text);
-    vertical-align: middle;
-    background-color: var(--link-colour);
-    color: var(--text-inv-colour);
+    width: auto;
+    height: auto;
+
+    font: inherit;
+    letter-spacing: inherit;
+    text-align: center;
+    vertical-align: baseline;
+
+    cursor: pointer;
+    user-select: none;
+
+    background-color: var(--button-colour);
+    color: var(--light-text-inv-colour);
+    box-shadow: inset 0 0 0 transparent;
+
     border: none;
     border-radius: var(--border-radius);
-    width: auto;
-    user-select: none;
+
+    transition: all 200ms;
 }
 
 :is(button, .button, [type=submit]).accent {
@@ -1245,19 +1336,9 @@ textarea[required]:invalid {
     background-color: var(--error-colour);
 }
 
-:is(button, .button, [type=submit]) {
-    margin: 0.3em 0;
-    cursor: pointer;
-    transition: all 300ms;
-    border-radius: var(--border-radius);
-    height: auto;
-    vertical-align: baseline;
-    box-shadow: inset 0 0 0 transparent;
-}
-
 :is(button, .button, [type=submit]):hover,
 :is(button, .button, [type=submit]):focus {
-    box-shadow: inset 0 0 0 99em var(--button-highlight-colour);
+    box-shadow: inset 0 0 0 99em var(--button-highlight-colour), var(--shadow-tiny);
     border: none;
 }
 
@@ -1292,6 +1373,7 @@ code {
     font-family: monospace;
     color: var(--code-text-colour);
     background: var(--code-back-colour);
+    border: 1px solid var(--border-colour);
     border-radius: var(--border-radius);
 }
 
