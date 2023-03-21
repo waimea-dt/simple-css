@@ -18,6 +18,7 @@
    - Blocks can be styled as 'cards' via class="card"
    - Links can be styled as buttons via class="button"
    - Buttons/text/cards can be highlighted via class="success/warning/error/accent"
+   - Blocks/text can be aligned via class="left/right/centred"
    - Required form fields are marked automatically if empty
    - Responsive navigation menu, either within header, or outside is supported
    - Responsive mobile-style navigation menu is suppoorted via a checkbox toggle:
@@ -44,20 +45,25 @@
   Version history
 
   1.0    2023-03-03 - Initial release
+
   1.1    2023-03-03 - Tweaks to nav link hover
                     - Ability to specify number of columns in std. content width
+
   1.2    2023-03-06 - Added styling for embedded videos and YouTube iframes
                     - Added block alignment classes: .left .right .middle
                     - Defaulted alignment of images and video to centred
+
   1.3    2023-03-07 - Cleaned up colour naming
                     - Tweaked button highlighting
                     - Added colours for user prefers dark mode / class="light/dark"
+
   1.4    2023-03-15 - Made it easier to modify card / form / table / header / footer
                       colours, with sensible defaults
                     - Tweaked slightly the light / dark backgrounds
                     - Added scrollbar colouring
                     - Added easy hero image
-  1.5    2023-03-17 - Alignment helper classes now align text too
+
+  1.5    2023-03-17 - Alignment helper classes now aligns text too
 
   1.6    2023-03-20 - Refined the display of forms to be a bit more modern
                     - Cards now have shadows to raise them off the page a little
@@ -66,12 +72,18 @@
                     - Added shadow / glow to hero text
                     - Forms within cards don't get additional 'card' styling
 
+  1.7    2023-03-21 - Fixed alignment problems, changed .middle to .centred
+                    - Cards that are not in a columns container now have gaps between
+                    - Main header elements now align better at various screen sizes
+                    - Blocks / text directly within <body> or <main> now spaced better
+                    - Lowered specicifity of many selectors to allow easier overriding
+
 *************************************************************************************/
 
 
 
 
-/* Colours and Spacing
+/* Colours, Images and Spacing
  * Overide these values in your stylesheet (loaded after this)
  *************************************************************/
 
@@ -385,30 +397,31 @@ p:not(:last-child) {
     margin-bottom: var(--gap);
 }
 
+body > p:not(:first-child) {
+    margin-top: calc(var(--gap) / 2 );
+}
+
+body > p:not(:last-child) {
+    margin-bottom: calc(var(--gap) / 2 );
+}
+
 
 /* ALIGNMENT
  *************************************************************/
 
-.middle {
+.centred {
     margin-left: auto;
     margin-right: auto;
-    text-align: center;
 }
 
 .left {
     margin-left: 0;
     margin-right: auto;
-    text-align: left;
 }
 
 .right {
     margin-right: 0;
     margin-left: auto;
-    text-align: right;
-}
-
-:is(.middle, .left, .right) > * {
-    text-align: initial;
 }
 
 .full-width {
@@ -417,6 +430,19 @@ p:not(:last-child) {
     margin-left: 0;
     margin-right: 0;
 }
+
+:where(h1,h2,h3,h4,h5,h6,p).centred {
+    text-align: center;
+}
+
+:where(h1,h2,h3,h4,h5,h6,p).left {
+    text-align: left;
+}
+
+:where(h1,h2,h3,h4,h5,h6,p).right {
+    text-align: right;
+}
+
 
 
 /* BASE COLOURS
@@ -427,12 +453,7 @@ body {
     background-color: var(--back-colour);
 }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
+:where(h1,h2,h3,h4,h5,h6) {
     color: var(--accent-colour);
 }
 
@@ -492,19 +513,17 @@ html {
     line-height: 1.5;
 }
 
-
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
+:where(h1,h2,h3,h4,h5,h6) {
     font-weight: normal;
     line-height: 1;
     padding: 0;
     margin: 1em 0 0.7em;
     overflow-wrap: break-word;
     hyphens: auto;
+}
+
+:where(body, main) > :where(h1,h2,h3,h4,h5,h6):first-child {
+    margin: 1.5em 0 1.0em;
 }
 
 h1 { font-size: 2.4em; }
@@ -599,7 +618,7 @@ a:hover {
 body > header {
     padding: var(--padding-small) var(--side-padding);
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
     flex-wrap: wrap;
     gap: var(--gap);
@@ -611,26 +630,28 @@ body > header {
     box-shadow: var(--shadow-medium);
 }
 
-body > header > :is(div, section, article, nav, aside) {
+body > header > :where(div, section, article, nav, aside, p) {
     padding: 0;
+    margin: 0;
 }
 
 
 body > header h1 {
     color: var(--text-colour);
-    font-size: 2em;
+    font-size: 1.6em;
     margin: 0;
     padding: 0;
-    text-align: center;
     flex: 1;
 }
 
-@media screen and (min-width: 64em) {
 
+@media screen and (min-width: 64em) {
     body > header h1 {
-        text-align: left;
+        font-size: 2em;
     }
 }
+
+
 
 /* MAIN FOOTER
  *************************************************************/
@@ -812,58 +833,11 @@ body > nav ul {
 }
 
 
-/* PAGE SECTIONS
- *************************************************************/
-
-section,
-article,
-aside,
-div {
-    padding: var(--padding) var(--side-padding);
-    scroll-margin-top: calc(var(--padding) + 1rem) ;
-    color: var(--text-colour);
-}
-
-main > article:not(.hero):not(.full-width),
-main > section:not(.hero):not(.full-width) {
-    --side-padding-calc: max( var(--side-padding), calc( (100% - var(--content-max-width)) / 2 ) );
-    padding-left: var(--side-padding-calc);
-    padding-right: var(--side-padding-calc);
-}
-
-main > article:not(.hero):nth-child(odd),
-main > section:not(.hero):nth-child(odd) {
-    background-color: var(--back-colour);
-}
-
-main > article:not(.hero):nth-child(even),
-main > section:not(.hero):nth-child(even) {
-    background-color: var(--back-alt-colour);
-}
-
-:is(article, section, aside, div, .card) > :first-child,
-:is(article, section, aside, div, .card) > :is(header, footer) > :first-child {
-    margin-top: 0;
-}
-
-:is(article, section, aside, div, .card) > :last-child,
-:is(article, section, aside, div, .card) > :is(header, footer) > :last-child {
-    margin-bottom: 0;
-}
-
-:is(article, section, aside, div, .card) > header {
-    margin-bottom: var(--gap);
-}
-
-:is(article, section, aside, div, .card) > footer {
-    margin-top: var(--gap);
-}
-
 
 /* HERO SECTION
  *************************************************************/
 
-.hero {
+ .hero {
     width: 100%;
     max-width: 100%;
 }
@@ -904,7 +878,52 @@ main > section:not(.hero):nth-child(even) {
 
 
 
-/* COLUMNS & CARDS
+/* PAGE SECTIONS
+ *************************************************************/
+body {
+    --side-padding-calc: max( var(--side-padding), calc( (100% - var(--content-max-width)) / 2 ) );
+}
+
+:where(article, section, aside, div) {
+    padding: var(--padding) var(--side-padding);
+    scroll-margin-top: calc(var(--padding) + 1rem) ;
+    color: var(--text-colour);
+}
+
+:where(body, main) > :where(article, section, aside, div, h1, h2, h3, h4, h5, h6, p):where(:not(.hero):not(.full-width)) {
+    padding-left: var(--side-padding-calc);
+    padding-right: var(--side-padding-calc);
+}
+
+:where(body, main) > :where(article, section, aside, div):where(:not(.hero):not(.card)):nth-of-type(odd) {
+    background-color: var(--back-colour);
+}
+
+:where(body, main) > :where(article, section, aside, div):where(:not(.hero):not(.card)):nth-of-type(even) {
+    background-color: var(--back-alt-colour);
+}
+
+:where(article, section, aside, div, .card) > :first-child,
+:where(article, section, aside, div, .card) > :where(header, footer) > :first-child {
+    margin-top: 0;
+}
+
+:where(article, section, aside, div, .card) > :last-child,
+:where(article, section, aside, div, .card) > :where(header, footer) > :last-child {
+    margin-bottom: 0;
+}
+
+:where(article, section, aside, div, .card) > header {
+    margin-bottom: var(--gap);
+}
+
+:where(article, section, aside, div, .card) > footer {
+    margin-top: var(--gap);
+}
+
+
+
+/* COLUMNS
  *************************************************************/
 
 .columns {
@@ -919,7 +938,7 @@ main > section:not(.hero):nth-child(even) {
     width: 100%;
 }
 
-.columns > :is(section, articel, aside, div) {
+.columns > :where(section, article, aside, div) {
     padding: var(--padding-small) 0;
     width: var(--column-width);
 }
@@ -948,17 +967,37 @@ main > section:not(.hero):nth-child(even) {
     }
 }
 
-.card,
 .columns > .card {
+    /* display: block;
+    padding: var(--padding-medium);
+    border: 1px solid var(--border-colour);
+    background-color: var(--card-back-colour);
+    box-shadow: var(--shadow-small); */
+    width: var(--column-width);
+}
+
+.columns > .card {
+    margin-bottom: 0;
+}
+
+
+
+/* CARDS
+ *************************************************************/
+
+.card {
     display: block;
     padding: var(--padding-medium);
     border: 1px solid var(--border-colour);
     background-color: var(--card-back-colour);
     box-shadow: var(--shadow-small);
+    margin-bottom: var(--gap);
 }
 
-.columns > .card {
-    width: var(--column-width);
+:where(body, main) > .card {
+    margin-left: var(--side-padding-calc);
+    margin-right: var(--side-padding-calc);
+    padding: var(--padding-medium);
 }
 
 .card.accent {
@@ -1009,14 +1048,7 @@ li::marker {
 /* MEDIA
  *************************************************************/
 
-img,
-picture,
-video,
-audio,
-canvas,
-svg,
-figure,
-iframe {
+:where(img, picture, video, audio, canvas, svg, figure, iframe) {
     display: block;
     max-width: 100%;
     height: auto;
@@ -1030,9 +1062,7 @@ figure {
     align-items: center;
 }
 
-figure img,
-figure picture,
-figure svg {
+figure :where(img, picture, svg) {
     margin: 0;
 }
 
@@ -1085,6 +1115,73 @@ tr:nth-child(even) {
     background: var(--table-alt-back-colour);
 }
 
+
+
+/* BUTTONS
+ *************************************************************/
+
+ :is(button, .button, [type=submit]) {
+    display: inline-block;
+    margin: var(--padding-tiny) 0;
+    padding: var(--padding-text-small) var(--padding-text);
+    width: auto;
+    height: auto;
+
+    font: inherit;
+    letter-spacing: inherit;
+    text-align: center;
+    vertical-align: baseline;
+
+    cursor: pointer;
+    user-select: none;
+
+    background-color: var(--button-colour);
+    color: var(--light-text-inv-colour);
+    box-shadow: inset 0 0 0 transparent;
+
+    border: none;
+    border-radius: var(--border-radius);
+
+    transition: all 200ms;
+}
+
+:where(button, .button, [type=submit]).accent {
+    background-color: var(--accent-colour);
+}
+
+:where(button, .button, [type=submit]).success {
+    background-color: var(--success-colour);
+}
+
+:where(button, .button, [type=submit]).warning {
+    background-color: var(--warning-colour);
+}
+
+:where(button, .button, [type=submit]).error {
+    background-color: var(--error-colour);
+}
+
+:where(button, .button, [type=submit]):hover,
+:where(button, .button, [type=submit]):focus {
+    box-shadow: inset 0 0 0 99em var(--button-highlight-colour), var(--shadow-tiny);
+    border: none;
+}
+
+:where(button, .button, [type=submit]):active {
+    box-shadow: inset 0 0 0 99em var(--shadow-colour);
+    border: none;
+}
+
+:is(button[disabled], button.disabled, .button.disabled, input[disabled]) {
+    box-shadow: none;
+    color: var(--text-disabled-colour);
+    background-color: var(--button-disabled-colour);
+    cursor: not-allowed;
+}
+
+:is(button[disabled], button.disabled, .button.disabled, input[disabled]):active {
+    pointer-events: none;
+}
 
 
 /* FORMS
@@ -1155,17 +1252,14 @@ fieldset {
     margin-top: var(--padding-small);
 }
 
-:not(:is([type=checkbox], [type=radio])) + label + fieldset {
+:not(:where([type=checkbox], [type=radio])) + label + fieldset {
     margin-top: 0;
 }
 
 
 /* Styling of controls */
 
-input,
-optgroup,
-select,
-textarea {
+:where(input, optgroup, select, textarea) {
     color: inherit;
     font: inherit;
     margin: 0;
@@ -1185,7 +1279,7 @@ optgroup {
     font-weight: bold;
 }
 
-:is(input, textarea, select) {
+:where(input, textarea, select) {
     line-height: 1.5;
     height: 2.1em;
     padding: var(--padding-text-small) var(--padding-text);
@@ -1196,12 +1290,12 @@ optgroup {
     transition: all 200ms;
 }
 
-:is(input, textarea, select):focus {
+:where(input, textarea, select):focus {
     border-bottom-color: var(--accent-colour);
     outline: 0;
 }
 
-:is(input[type=checkbox], input[type=radio], input[type=range]):focus {
+:where(input[type=checkbox], input[type=radio], input[type=range]):focus {
     outline: 2px solid var(--accent-colour);
     border-radius: var(--border-radius);
 }
@@ -1211,8 +1305,7 @@ optgroup {
     padding: 0 var(--padding-text);
 }
 
-[type=number],
-[type=date] {
+:where([type=number], [type=date]) {
     width: 10em;
 }
 
@@ -1224,21 +1317,17 @@ textarea {
     height: auto;
 }
 
-[type=checkbox],
-[type=radio] {
+:where([type=checkbox], [type=radio]) {
     height: 1.2em;
     width: 1.2em;
     display: inline-block;
 }
 
-[type=checkbox],
-[type=radio],
-[type=range] {
+:where([type=checkbox], [type=radio], [type=range]) {
     accent-color: var(--accent-colour);
 }
 
-[type=file],
-[type=color] {
+:where([type=file], [type=color]) {
     cursor: pointer;
 }
 
@@ -1249,12 +1338,11 @@ textarea {
 
 /* Checkbox and radio button tweaks */
 
-:is(input, textarea, select, fieldset) + :is([type=checkbox], [type=radio]) {
+:where(input, textarea, select, fieldset) + :where([type=checkbox], [type=radio]) {
     margin-top: var(--padding-medium);
 }
 
-[type=checkbox] + label,
-[type=radio] + label {
+:where([type=checkbox], [type=radio]) + label {
     display: inline-block;
     margin-left: var(--padding-text-small);
     margin-right: var(--padding-small);
@@ -1262,14 +1350,14 @@ textarea {
     vertical-align: text-bottom;
 }
 
-fieldset :is(label, [type=checkbox], [type=radio]) {
+fieldset :where(label, [type=checkbox], [type=radio]) {
     margin-top: 0;
 }
 
 
 /* Submit button */
 
-:is(input, textarea, select, label, fieldset) + [type=submit] {
+:where(input, textarea, select, label, fieldset) + [type=submit] {
     display: block;
     margin-top: var(--gap);
 }
@@ -1290,79 +1378,6 @@ textarea[required]:invalid {
     background-position: calc(100% - var(--padding-text-small)) var(--padding-text-small);
 }
 
-
-
-/* BUTTONS
- *************************************************************/
-
-:is(button, .button, [type=submit]) {
-    display: inline-block;
-    margin: 0;
-    padding: var(--padding-text-small) var(--padding-text);
-    width: auto;
-    height: auto;
-
-    font: inherit;
-    letter-spacing: inherit;
-    text-align: center;
-    vertical-align: baseline;
-
-    cursor: pointer;
-    user-select: none;
-
-    background-color: var(--button-colour);
-    color: var(--light-text-inv-colour);
-    box-shadow: inset 0 0 0 transparent;
-
-    border: none;
-    border-radius: var(--border-radius);
-
-    transition: all 200ms;
-}
-
-:is(button, .button, [type=submit]).accent {
-    background-color: var(--accent-colour);
-}
-
-:is(button, .button, [type=submit]).success {
-    background-color: var(--success-colour);
-}
-
-:is(button, .button, [type=submit]).warning {
-    background-color: var(--warning-colour);
-}
-
-:is(button, .button, [type=submit]).error {
-    background-color: var(--error-colour);
-}
-
-:is(button, .button, [type=submit]):hover,
-:is(button, .button, [type=submit]):focus {
-    box-shadow: inset 0 0 0 99em var(--button-highlight-colour), var(--shadow-tiny);
-    border: none;
-}
-
-:is(button, .button, [type=submit]):active {
-    box-shadow: inset 0 0 0 99em var(--shadow-colour);
-    border: none;
-}
-
-button[disabled],
-button.disabled,
-.button.disabled,
-input[disabled] {
-    box-shadow: none;
-    color: var(--text-disabled-colour);
-    background-color: var(--button-disabled-colour);
-    cursor: not-allowed;
-}
-
-button[disabled]:active,
-button.disabled:active,
-.button.disabled:active,
-input[disabled]:active {
-    pointer-events: none;
-}
 
 
 /* CODE
